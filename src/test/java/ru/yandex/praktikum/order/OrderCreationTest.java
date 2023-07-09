@@ -1,5 +1,6 @@
 package ru.yandex.praktikum.order;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -48,6 +49,7 @@ public class OrderCreationTest {
 
     @Test
     @DisplayName("Заказ самоката")
+    @Description("Проверка успешного создания заказа самокатов разных цветов")
     public void orderCreationTest() {
         Order order = new Order(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
         ValidatableResponse response = orderClient.create(order);
