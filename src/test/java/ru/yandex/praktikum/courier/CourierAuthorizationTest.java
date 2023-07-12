@@ -16,8 +16,9 @@ public class CourierAuthorizationTest {
     private String id;
 
     @Before
-    public void setUp() {
+    public void createCourier() {
         courier = generator.random();
+        id = null;
     }
 
     @Test

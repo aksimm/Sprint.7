@@ -17,6 +17,7 @@ public class CourierCreationTest {
     @Before
     public void createCourier() {
         courier = generator.random();
+        id = null;
     }
 
     @Test
