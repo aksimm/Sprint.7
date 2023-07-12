@@ -3,6 +3,7 @@ package ru.yandex.praktikum.courier;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -15,11 +16,9 @@ public class CourierAuthorizationTest {
     private String id;
 
     @Before
-    public void createAndDeleteCourier() {
+    public void createCourier() {
         courier = generator.random();
-        if (id != null) {
-            client.delete(id);
-        }
+        id = null;
     }
 
     @Test
@@ -48,6 +47,13 @@ public class CourierAuthorizationTest {
         courier.setPassword("");
         ValidatableResponse response = client.login(Credentials.from(courier));
         response.statusCode(400).assertThat().body("message", equalTo("Недостаточно данных для входа"));
+    }
+
+    @After
+    public void deleteCourier() {
+        if (id != null) {
+            client.delete(id);
+        }
     }
 }
 
